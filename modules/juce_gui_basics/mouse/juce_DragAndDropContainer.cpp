@@ -104,7 +104,7 @@ public:
             Component* unused;
             finalTarget = findTarget (e.getScreenPosition(), details.localPosition, unused);
 
-            if (wasVisible) // fade the component and remove it - it'll be deleted later by the timer callback
+            if (wasVisible && details.sourceComponent->getProperties()["dontDismissWithAnimation"].isVoid()) // fade the component and remove it - it'll be deleted later by the timer callback
                 dismissWithAnimation (finalTarget == nullptr);
 
             if (auto* parent = getParentComponent())
